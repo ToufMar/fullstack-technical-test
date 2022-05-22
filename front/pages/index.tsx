@@ -1,44 +1,25 @@
-import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
-import { CartContext, CartProvider } from "context/CartContext";
-import { useContext, useEffect } from "react";
+import { Card } from "components/card";
 
 const searchClient = algoliasearch("latency", "6be0576ff61c053d5f9a3225e2a90f76");
 
+const Hit = ({ hit }) => {
+    console.log(hit);
+    return <Card {...hit} />;
+};
+
 export default function Home() {
-    const context = useContext(CartContext);
-
-    useEffect(() => {
-        const test = fetch("http://localhost:4000/cart/lalala").then((res) => console.log(res));
-    }, []);
-
-    console.log(context);
     return (
         <div className={styles.container}>
-            <Head>
-                <title>Create Next App</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
             <main className={styles.main}>
-                <h1 className={styles.title}>Welcome to La Fourche Frontend Technical Test v2 !</h1>
+                <h1>Rechercher un produit</h1>
                 <InstantSearch indexName="bestbuy" searchClient={searchClient}>
                     <SearchBox />
-                    <Hits />
+                    <Hits hitComponent={Hit} />
                 </InstantSearch>
             </main>
-
-            <footer className={styles.footer}>
-                <a
-                    href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Powered by <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-                </a>
-            </footer>
         </div>
     );
 }

@@ -8,8 +8,12 @@ export class CartController {
 
   @Get('/:id')
   getCart(@Param('id') id: string): Cart {
-    console.log('coucou');
     return this.cartService.getCart(id);
+  }
+
+  @Get('/')
+  getCarts(): Cart[] {
+    return this.cartService.getAllCarts();
   }
 
   @Post('/')

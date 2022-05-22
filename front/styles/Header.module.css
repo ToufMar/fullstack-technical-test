@@ -1,0 +1,15 @@
+.header {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: red;
+    padding: 20px 50px;
+}
+
+.header .header_logo {
+}
+
+.header .header_cart {
+    cursor: pointer;
+}
