@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export const Header: React.FC = () => {
     const { state } = useContext(CartContext);
+    console.log(state);
     return (
         <div className={style.header}>
             <div className={style.header_logo}></div>

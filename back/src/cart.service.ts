@@ -23,16 +23,8 @@ export class CartService {
   // Use this array as your database
   private carts: Cart[] = [
     {
-      id: 'lol',
-      items: [
-        {
-          id: 'lal',
-          quantity: 1,
-          thumbnailUrl: '',
-          name: '',
-          price: 0,
-        },
-      ],
+      id: '0',
+      items: [],
     },
   ];
 
@@ -43,7 +35,7 @@ export class CartService {
   getCart(id: string): Cart {
     const carts = this.carts.find((cart) => (cart.id = id));
     if (carts) {
-      return carts;
+      return carts[0];
     } else {
       throw new NotFoundException();
     }
@@ -57,7 +49,14 @@ export class CartService {
     throw new NotImplementedException();
   }
 
-  putItems(id: string, items: Item[]): Cart {
-    throw new NotImplementedException();
+  putItems(id: string, item: Item): Cart {
+    this.carts[0].items.push(item);
+    return this.carts[0];
+  }
+
+  removeItem(id: string): Cart {
+    const index = this.carts[0].items.findIndex((item) => item.id === id);
+    this.carts[0].items.splice(index, 1);
+    return this.carts[0];
   }
 }

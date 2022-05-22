@@ -13,17 +13,22 @@ export const Card: React.FC<CardProp> = (props) => {
     const { state, methods } = useContext(CartContext);
 
     const addItem = () => {
-        methods.addItem({
-            id: props.objectID,
+        methods.addItem(props.objectID, {
             thumbnailUrl: props.thumbnailImage,
             name: props.name,
             price: props.salePrice,
+            quantity: 1,
+            id: props.objectID,
         });
+    };
+
+    const removeItem = () => {
+        methods.removeItem(props.objectID);
     };
 
     const AddOrRemoveButton = () => {
         if (state.elements.find((element) => element.id === props.objectID)) {
-            return <button>Retirer du panier</button>;
+            return <button onClick={removeItem}>Retirer du panier</button>;
         } else {
             return <button onClick={addItem}>Ajouter au panier</button>;
         }
