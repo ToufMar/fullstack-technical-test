@@ -1,7 +1,7 @@
 import { CartContext } from "context/CartContext";
 import React, { useContext } from "react";
 import styles from "../styles/Home.module.css";
-
+import buttonStyles from "../styles/Button.module.css";
 type CardProp = {
     thumbnailImage: string;
     objectID: string;
@@ -28,15 +28,25 @@ export const Card: React.FC<CardProp> = (props) => {
 
     const AddOrRemoveButton = () => {
         if (state.elements.find((element) => element.id === props.objectID)) {
-            return <button onClick={removeItem}>Retirer du panier</button>;
+            return (
+                <button className={buttonStyles.button_delete} onClick={removeItem}>
+                    Retirer du panier
+                </button>
+            );
         } else {
-            return <button onClick={addItem}>Ajouter au panier</button>;
+            return (
+                <button className={buttonStyles.button_add} onClick={addItem}>
+                    Ajouter au panier
+                </button>
+            );
         }
     };
 
     return (
         <div className={styles.card}>
-            <h3>{props.name}</h3>
+            <img src={props.thumbnailImage} />
+            <h4>{props.name}</h4>
+            <h4>{props.salePrice} Euros</h4>
             <AddOrRemoveButton />
         </div>
     );

@@ -1,8 +1,5 @@
 .cart {
-    /* display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 5px; */
+    padding: 0 5rem;
 }
 
 .item {
@@ -10,9 +7,11 @@
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 5px;
+    min-height: 100px;
 }
 
 .button_delete {
+    height: 50px;
     cursor: pointer;
     max-width: 150px;
     border-radius: 50px;
